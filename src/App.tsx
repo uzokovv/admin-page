@@ -1,12 +1,13 @@
-import { CssVarsProvider } from '@mui/joy'
-import Home from './pages/home'
+// import { CssVarsProvider } from '@mui/joy'
+// import Home from './pages/home'
+import LoginFinal from './pages/auth/login'
+import { ToastContainer } from 'react-toastify'
 
 const App = () => {
   return (
     <div>
-      <CssVarsProvider>
-      <Home />
-    </CssVarsProvider>
+      <LoginFinal />
+      <ToastContainer />
     </div>
   )
 }
