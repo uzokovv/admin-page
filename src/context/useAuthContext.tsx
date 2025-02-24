@@ -17,10 +17,10 @@ const AuthContext = createContext(defaultProvider)
 
 const AuthProvider = ({ children }: any) => {
     const [user, setUser] = useState(defaultProvider.user)
-    const [loading, setloading] = useState(defaultProvider.loading)
+    const [loading, setLoading] = useState(defaultProvider.loading)
 
-    const handLogin = (params: any, errorColback: any) => {
-        setloading(false)
+    const handLogin = (params: any, errorCallback?: any) => {
+        setLoading(false)
 
         Request
             .post(`${config.Api_url}/auth/signin`, params)
@@ -34,17 +34,17 @@ const AuthProvider = ({ children }: any) => {
             .catch((err: AxiosError) => {
                 console.log(err);
                 toast.error(err.message)
-                if (errorColback) errorColback(err)
+                if (errorCallback) errorCallback(err)
             })
             .finally(() => {
-                setloading(true)
+                setLoading(true)
             })
     }
     const values = {
         user,
         loading,
         setUser,
-        setloading,
+        setLoading,
         login: handLogin,
     }
     return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>

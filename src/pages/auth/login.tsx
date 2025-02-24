@@ -11,7 +11,6 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import { useForm } from "react-hook-form"
 import { useAuth } from '../../context';
-import { register } from 'module';
 import { toast } from 'react-toastify';
 
 function ModeToggle() {
@@ -63,10 +62,12 @@ export default function LoginFinal() {
 
   const onSubmit = (data: any) => {
     console.log(data)
-    const { phone_number: phone_number, password } = data
-    auth.login({ phone_number, password }, () => {
+    const { phone_number, password } = data
+    try {
+      auth.login({ phone_number, password })
+    } catch (error) {
       toast.error("Xatolik yuzaga keldi!")
-    })
+    }
     console.log(errors);
   }
   return (
